@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Write a Claude Code Skill (And Why Most of Them Never Fire)</title>
+<meta name="description" content="A free practical guide to writing Claude Code skills: the SKILL.md anatomy, where skills live, how the description field decides whether a skill ever fires, progressive disclosure, and the three most common reasons a skill sits unused.">
+<link rel="canonical" href="https://tools.aingyal.com/guides/how-to-write-a-claude-code-skill/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Write a Claude Code Skill (And Why Most of Them Never Fire)">
+<meta property="og:description" content="A free practical guide to writing Claude Code skills: the SKILL.md anatomy, where skills live, how the description field decides whether a skill ever fires, progressive disclosure, and the three most common reasons a skill sits unused.">
+<meta property="og:url" content="https://tools.aingyal.com/guides/how-to-write-a-claude-code-skill/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Article",
+"headline": "How to Write a Claude Code Skill (And Why Most of Them Never Fire)",
+"description": "A free practical guide to writing Claude Code skills: the SKILL.md anatomy, where skills live, how the description field decides whether a skill ever fires, progressive disclosure, and the three most common reasons a skill sits unused.",
+"url": "https://tools.aingyal.com/guides/how-to-write-a-claude-code-skill/",
+"dateModified": "2026-07-29",
+"mainEntityOfPage": {
+"@type": "WebPage",
+"@id": "https://tools.aingyal.com/guides/how-to-write-a-claude-code-skill/"
+},
+"isAccessibleForFree": true
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "Where do Claude Code skills live?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Project skills go in a .claude/skills/ directory inside the repository, so they travel with the codebase and the team. Personal skills live under your home Claude directory and are available in every project you work on."
+}
+},
+{
+"@type": "Question",
+"name": "Why is my Claude Code skill not being used?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Almost always the description. It needs to state the trigger conditions in the words a user would actually type, not summarise what the skill contains. Test by opening a fresh session and phrasing the request naturally without naming the skill."
+}
+},
+{
+"@type": "Question",
+"name": "How long should a SKILL.md file be?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Short enough that loading it is cheap \u2014 the method, the steps, the stopping condition. Push rubrics, long examples and edge-case tables into separate reference files the skill points at, so they load only when they are actually needed."
+}
+},
+{
+"@type": "Question",
+"name": "What makes a skill worth writing?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "It encodes something the model could not produce on its own: your rubric, your brand constraints, your output format, or a multi-step procedure with a verification gate. If the agent would have done the same thing without the file, the file is overhead."
+}
+}
+]
+}
+</script>
+<style>
+:root{--ink:#1a1a2e;--muted:#5a5a72;--line:#e6e6ef;--accent:#4a4ae0;--bg:#fbfbfe}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header,main,footer{max-width:760px;margin:0 auto;padding:0 20px}
+header{padding-top:40px}
+.crumb{font-size:.85rem;color:var(--muted);margin:0 0 18px}
+.crumb a{color:var(--accent);text-decoration:none}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .35em}
+.standfirst{font-size:1.08rem;color:var(--muted);margin:0 0 8px;max-width:62ch}
+.updated{font-size:.8rem;color:var(--muted);margin:0}
+main{padding-bottom:8px}
+h2{font-size:1.25rem;margin:2em 0 .4em;border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:4px}
+h3{font-size:1.02rem;margin:1.6em 0 .3em}
+p,li{max-width:68ch}
+ul,ol{padding-left:1.2em}
+li{margin:.35em 0}
+blockquote{margin:1.4em 0;padding:12px 18px;border-left:3px solid var(--accent);background:#fff;color:var(--muted)}
+.cta{display:block;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:18px 20px;margin:2.4em 0 1em;background:#fff;text-decoration:none;color:inherit}
+.cta:hover{box-shadow:0 8px 24px rgba(74,74,224,.12)}
+.cta strong{display:block;font-size:1.05rem;margin-bottom:.3em}
+.cta span{color:var(--muted);font-size:.94rem}
+.cta .price{color:var(--accent);font-weight:700}
+.faq dt{font-weight:600;margin:1.2em 0 .2em}
+.faq dd{margin:0;color:var(--muted);max-width:68ch}
+footer{padding:24px 20px 56px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);margin-top:40px}
+footer a{color:var(--accent)}
+.disc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:.9rem;color:var(--muted);margin:1.8em 0}
+.disc a{color:var(--accent)}
+pre{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:.86rem;line-height:1.55}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+p>code,li>code{background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+pre code{background:none;border:0;padding:0}
+</style>
+</head>
+<body>
+<header>
+<p class="crumb"><a href="https://tools.aingyal.com/">AI tools &amp; guides</a> &rsaquo; Free guides</p>
+<h1>How to write a Claude Code skill — and why most of them never fire</h1>
+<p class="standfirst">A skill is a folder with a markdown file in it. The hard part is not the format; it is writing a description that makes the agent reach for it at the right moment. Here is the anatomy, and the three failure modes.</p>
+<p class="updated">Free to read &middot; last reviewed 2026-07-29</p>
+</header>
+<main>
+<h2>What a skill actually is</h2>
+<p>A skill is a directory containing a <code>SKILL.md</code> file: a block of YAML frontmatter, then markdown instructions. The agent sees only the metadata until something in your request matches — at which point the full body loads into context and shapes how the work gets done.</p>
+<p>That is the entire mechanism, and understanding it explains everything else. A skill is not a function you call. It is a set of instructions the agent decides to read, based on one line you wrote.</p>
+<pre><code>.claude/skills/
+  competitor-teardown/
+    SKILL.md
+    references/scoring-rubric.md
+    scripts/fetch_pricing.py</code></pre>
+<p>Project-level skills live under <code>.claude/skills/</code> in the repository. Personal ones live under your home Claude directory and follow you between projects.</p>
+<h2>The anatomy</h2>
+<p>The frontmatter carries the name and the description. The body carries the method.</p>
+<pre><code>---
+name: competitor-teardown
+description: Analyse a competitor's pricing page and produce a
+  positioning gap report. Use when asked to compare pricing,
+  study a competitor, or find positioning gaps.
+---
+
+# Competitor teardown
+
+## When this fires
+...
+
+## Steps
+1. ...</code></pre>
+<p>Two rules do most of the work:</p>
+<ul>
+<li><strong>The description is a trigger, not a title.</strong> It should say what the skill does <em>and</em> the situations that should invoke it, in the words a user would actually type. "Marketing helper" never fires. "Use when asked to compare competitor pricing, study a rival's positioning, or find positioning gaps" fires reliably.</li>
+<li><strong>The body is a procedure, not an essay.</strong> Numbered steps, explicit inputs and outputs, and a stated stopping condition. If you cannot say what "done" looks like, the agent cannot either.</li>
+</ul>
+<h2>Progressive disclosure — the part that keeps it fast</h2>
+<p>Everything in <code>SKILL.md</code> loads when the skill fires. Everything in files it merely <em>points to</em> loads only if needed. So the shape that scales is a short main file that names its references:</p>
+<blockquote>Keep SKILL.md to the method. Push the rubric, the long examples, the schema and the edge-case table into <code>references/</code>, and reference them by path with one line saying when to read each.</blockquote>
+<p>A 900-line SKILL.md is a context tax paid on every invocation, most of it for material that was irrelevant this time. A 120-line SKILL.md with four references is the same knowledge at a fraction of the cost.</p>
+<h2>The three reasons skills never fire</h2>
+<h3>1. The description describes the skill instead of the trigger</h3>
+<p>By far the most common. Write the description for the moment of retrieval: which requests should pull this in. Include the synonyms a real person would use, including the sloppy ones.</p>
+<h3>2. Two skills overlap</h3>
+<p>If three skills all claim "content writing," the agent picks unpredictably between them. Give each a distinct territory and say in each description what it is <em>not</em> for. Boundaries are as load-bearing as capabilities.</p>
+<h3>3. It encodes knowledge the model already has</h3>
+<p>A skill that explains what SEO is adds nothing. A skill that encodes <em>your</em> rubric, <em>your</em> brand constraints, <em>your</em> output format, or a multi-step procedure with a verification gate is worth its place. The test: could the agent have produced this without the file? If yes, delete the file.</p>
+<h2>A practical build order</h2>
+<ol>
+<li><strong>Do the task manually once</strong> and keep the transcript. That is your first draft.</li>
+<li><strong>Extract the procedure</strong> — the steps, the order, the decisions you made and why.</li>
+<li><strong>Write the description last</strong>, once you know what the skill really covers, and phrase it as trigger conditions.</li>
+<li><strong>Add a verification step</strong> at the end of the body. Skills that check their own output before declaring done are the ones you stop babysitting.</li>
+<li><strong>Test it cold</strong> in a fresh session by typing the request the way a user would — not by naming the skill. If it does not fire, the description is the bug, every time.</li>
+</ol>
+<a class="cta" href="https://andrewhangyal.gumroad.com/l/nlajnm" rel="noopener">
+  <strong>Or start from a stack that already works</strong>
+  <span>The full Forge stack for Claude Code — marketing, SEO, CRO, design and content skills, written and structured so they fire when they should. Read one, and the pattern for writing your own becomes obvious.</span>
+  <span class="price">$129 &middot; instant download &rarr;</span>
+</a>
+<h2>Common questions</h2>
+<dl class="faq">
+  <dt>Where do Claude Code skills live?</dt>
+  <dd>Project skills go in a .claude/skills/ directory inside the repository, so they travel with the codebase and the team. Personal skills live under your home Claude directory and are available in every project you work on.</dd>
+  <dt>Why is my Claude Code skill not being used?</dt>
+  <dd>Almost always the description. It needs to state the trigger conditions in the words a user would actually type, not summarise what the skill contains. Test by opening a fresh session and phrasing the request naturally without naming the skill.</dd>
+  <dt>How long should a SKILL.md file be?</dt>
+  <dd>Short enough that loading it is cheap — the method, the steps, the stopping condition. Push rubrics, long examples and edge-case tables into separate reference files the skill points at, so they load only when they are actually needed.</dd>
+  <dt>What makes a skill worth writing?</dt>
+  <dd>It encodes something the model could not produce on its own: your rubric, your brand constraints, your output format, or a multi-step procedure with a verification gate. If the agent would have done the same thing without the file, the file is overhead.</dd>
+</dl>
+<div class="disc">Independent guide. Not affiliated with or endorsed by Anthropic. Claude Code changes quickly — check the official documentation for the current specification before relying on any detail here.</div>
+</main>
+<footer>
+<p><a href="https://tools.aingyal.com/">&larr; All AI tools &amp; guides</a></p>
+<p>For the solo builder who has written the same five-paragraph prompt eleven times.</p>
+</footer>
+</body>
+</html>
