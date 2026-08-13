@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Run an SEO Audit with Claude Code (Without a Paid Crawler)</title>
+<meta name="description" content="A free practical guide to auditing a site with Claude Code: what to crawl first, the checks that actually change rankings, how to tell a crawl problem from an indexing problem, and the audit order that stops you fixing cosmetic issues while the real blocker sits untouched.">
+<link rel="canonical" href="https://tools.aingyal.com/guides/claude-code-seo-audit/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Run an SEO Audit with Claude Code (Without a Paid Crawler)">
+<meta property="og:description" content="A free practical guide to auditing a site with Claude Code: what to crawl first, the checks that actually change rankings, how to tell a crawl problem from an indexing problem, and the audit order that stops you fixing cosmetic issues while the real blocker sits untouched.">
+<meta property="og:url" content="https://tools.aingyal.com/guides/claude-code-seo-audit/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Article",
+"headline": "How to Run an SEO Audit with Claude Code (Without a Paid Crawler)",
+"description": "A free practical guide to auditing a site with Claude Code: what to crawl first, the checks that actually change rankings, how to tell a crawl problem from an indexing problem, and the audit order that stops you fixing cosmetic issues while the real blocker sits untouched.",
+"url": "https://tools.aingyal.com/guides/claude-code-seo-audit/",
+"dateModified": "2026-08-13",
+"mainEntityOfPage": {
+"@type": "WebPage",
+"@id": "https://tools.aingyal.com/guides/claude-code-seo-audit/"
+},
+"isAccessibleForFree": true
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "Can Claude Code replace a paid SEO crawler?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "For a site of a few dozen pages, an agent with shell access covers most of what a crawler reports \u2014 status codes, titles, headings, canonicals, internal links, sitemap coverage. Where paid tools stay ahead is scale, historical trend data, and index-status APIs that require credentials. For a small owned site the agent is usually enough; for a large one it is a supplement."
+}
+},
+{
+"@type": "Question",
+"name": "Why is my site crawled but not appearing in search?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Crawling and indexing are separate steps. A crawler fetching your pages daily is not a commitment to list them. Common causes include a very new domain with no inbound links, thin or duplicated content, a canonical tag pointing elsewhere, or a noindex header left over from staging. Search Console and Bing Webmaster Tools are the only sources that answer this definitively."
+}
+},
+{
+"@type": "Question",
+"name": "How do I check indexing without an account?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Reliably, you mostly cannot. Major engines disallow scraping their results pages, and the ones that permit it will serve a rate-limit page that mimics a zero-result page. If you try anyway, run a positive control \u2014 a small site you know is listed \u2014 in the same session, and treat any run where the control fails as inconclusive rather than negative."
+}
+},
+{
+"@type": "Question",
+"name": "What order should an SEO audit follow?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Causal order: reachability, then discovery, then crawl, then indexing, then on-page, then content. Each layer is meaningless if the one above it is broken, so stopping at the first failure saves the work that would have been wasted below it."
+}
+}
+]
+}
+</script>
+<style>
+:root{--ink:#1a1a2e;--muted:#5a5a72;--line:#e6e6ef;--accent:#4a4ae0;--bg:#fbfbfe}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header,main,footer{max-width:760px;margin:0 auto;padding:0 20px}
+header{padding-top:40px}
+.crumb{font-size:.85rem;color:var(--muted);margin:0 0 18px}
+.crumb a{color:var(--accent);text-decoration:none}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .35em}
+.standfirst{font-size:1.08rem;color:var(--muted);margin:0 0 8px;max-width:62ch}
+.updated{font-size:.8rem;color:var(--muted);margin:0}
+main{padding-bottom:8px}
+h2{font-size:1.25rem;margin:2em 0 .4em;border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:4px}
+h3{font-size:1.02rem;margin:1.6em 0 .3em}
+p,li{max-width:68ch}
+ul,ol{padding-left:1.2em}
+li{margin:.35em 0}
+blockquote{margin:1.4em 0;padding:12px 18px;border-left:3px solid var(--accent);background:#fff;color:var(--muted)}
+.cta{display:block;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:18px 20px;margin:2.4em 0 1em;background:#fff;text-decoration:none;color:inherit}
+.cta:hover{box-shadow:0 8px 24px rgba(74,74,224,.12)}
+.cta strong{display:block;font-size:1.05rem;margin-bottom:.3em}
+.cta span{color:var(--muted);font-size:.94rem}
+.cta .price{color:var(--accent);font-weight:700}
+.faq dt{font-weight:600;margin:1.2em 0 .2em}
+.faq dd{margin:0;color:var(--muted);max-width:68ch}
+footer{padding:24px 20px 56px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);margin-top:40px}
+footer a{color:var(--accent)}
+.disc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:.9rem;color:var(--muted);margin:1.8em 0}
+.disc a{color:var(--accent)}
+pre{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:.86rem;line-height:1.55}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+p>code,li>code{background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+pre code{background:none;border:0;padding:0}
+</style>
+</head>
+<body>
+<header>
+<p class="crumb"><a href="https://tools.aingyal.com/">AI tools &amp; guides</a> &rsaquo; Free guides</p>
+<h1>How to run an SEO audit with Claude Code</h1>
+<p class="standfirst">An agent with shell access can already fetch your pages, parse them, and tell you what is wrong. The gap is not capability — it is that nobody gives it a checklist and an order of operations. Here is both.</p>
+<p class="updated">Free to read &middot; last reviewed 2026-08-13</p>
+</header>
+<main>
+<h2>Audit in the right order, or the wrong thing gets fixed first</h2>
+<p>Most audit checklists are alphabetical. That is how you end up rewriting title tags on a site no crawler has ever visited. The order that matters is causal — each layer is worthless if the one above it is broken:</p>
+<ol>
+<li><strong>Reachability</strong> — does a bot get a 200 from your origin at all?</li>
+<li><strong>Discovery</strong> — does anything on the open web tell a crawler your URLs exist?</li>
+<li><strong>Crawl</strong> — are bots actually arriving, and fetching content rather than just <code>robots.txt</code>?</li>
+<li><strong>Indexing</strong> — has anything been added to a search index?</li>
+<li><strong>On-page</strong> — titles, headings, schema, internal links.</li>
+<li><strong>Content</strong> — does the page answer the query someone typed?</li>
+</ol>
+<p>Work top-down and stop at the first layer that fails. A new domain with no inbound links usually fails at step 2, and no amount of step-5 work will move it — that is the single most expensive mistake in this list, because step 5 feels like progress and produces visible diffs.</p>
+<h2>Layer 1 and 2 — reachability and discovery</h2>
+<p>These are the two an agent can settle in about a minute, and the two people skip.</p>
+<pre><code># Does a crawler UA actually get served?
+curl -sI -A "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" \
+  https://example.com/ | head -1
+
+# Is anything blocking at the robots layer?
+curl -s https://example.com/robots.txt
+
+# Does the sitemap exist, parse, and list what you think it lists?
+curl -s https://example.com/sitemap.xml | grep -c "&lt;loc&gt;"</code></pre>
+<p>Discovery is the harder half and has no single command. The question is blunt: <em>does any page a crawler already visits contain a link to yours?</em> If the honest answer is no, your sitemap is a map to a place nothing knows exists. Worth knowing before you invest weeks: links inside GitHub READMEs are rendered with <code>rel="nofollow"</code>, so they carry clicks but are a weak discovery signal — verify with <code>curl -s &lt;repo-url&gt; | grep -o '&lt;a[^&gt;]*yourdomain[^&gt;]*&gt;'</code> rather than assuming.</p>
+<h2>Layer 3 — read your own access log, not a third-party tool</h2>
+<p>Crawl evidence is the one signal that is entirely first-party. It cannot be rate-limited, cannot return someone else's false negative, and needs no account. If you control the origin, this is the highest-trust data in the whole audit:</p>
+<pre><code>for b in Googlebot bingbot YandexBot; do
+  echo "$b total=$(grep -c "$b" access.log) \
+ content=$(grep "$b" access.log | grep -vcE 'robots.txt|\\.txt')"
+done</code></pre>
+<p>Split total hits from <em>content</em> hits. A bot that fetches only <code>robots.txt</code> has not read a page, and a site with thousands of hits that are all health checks and asset requests has no crawl at all. The distinction between "a bot came" and "a bot read something" is where most crawl reports quietly mislead.</p>
+<p>On static hosts that give you no access log, this layer is simply unavailable — say so in the audit rather than substituting a guess. An unmeasurable layer reported as "fine" is worse than one reported as unknown.</p>
+<h2>Layer 4 — indexing is the layer you probably cannot measure yourself</h2>
+<p>Crawled and indexed are different states, and conflating them is the most common error in agent-run audits. A page can be fetched daily and never listed.</p>
+<p>The honest position: the authoritative answers live in Google Search Console and Bing Webmaster Tools, both free but both requiring an account you have verified. Scraping a search results page as a substitute is unreliable in a specific and dangerous way — the major engines disallow <code>/search</code> in <code>robots.txt</code>, and the ones that do not will eventually serve an anomaly page with zero results that looks exactly like "you are not indexed."</p>
+<blockquote>If an agent checks indexing by scraping, insist it runs a positive control in the same session — a small site that is certainly listed. If the control returns zero, the run proves nothing and the verdict must be withheld, not reported as absence.</blockquote>
+<p>A zero with no control behind it is not a finding. It is a blank.</p>
+<h2>Layer 5 — the on-page checks worth an agent&#x27;s time</h2>
+<p>Once the layers above hold, on-page work starts paying. These are the checks that repeatedly find real defects rather than cosmetic ones:</p>
+<ul>
+<li><strong>One <code>h1</code> per page, and it matches the query intent.</strong> Not the brand name.</li>
+<li><strong>Title under ~60 characters, front-loaded.</strong> The distinguishing words go first, because the tail gets truncated.</li>
+<li><strong>Meta description written, not inherited.</strong> Platforms that auto-derive it from body copy often emit two thousand characters of raw markdown — check what is actually served, with <code>curl</code>, not what the CMS preview shows.</li>
+<li><strong>Server-rendered content.</strong> Fetch the page with <code>curl</code> and grep for a sentence you can see in the browser. If it is absent, your content exists only after JavaScript runs, and you are depending on the renderer queue.</li>
+<li><strong>Internal links that actually point somewhere.</strong> Orphan pages — reachable from the sitemap but from no other page — are common and invisible without a crawl.</li>
+<li><strong>Canonical tags that agree with themselves.</strong> A canonical pointing at a different URL than the one serving it is a self-inflicted deindexing.</li>
+</ul>
+<h2>Make the agent prove its findings</h2>
+<p>The failure mode of an agent-run audit is not missing an issue. It is a confident, well-formatted report of issues it never verified — plausible, specific, and wrong. Two habits remove most of it:</p>
+<ol>
+<li><strong>Every finding cites the command that produced it</strong> and the raw output, not a summary. "Title too long" without the title is unfalsifiable.</li>
+<li><strong>Findings that could not be checked are listed as unchecked</strong>, in their own section, with the reason. An audit whose unknowns are visible is worth more than one that reads as complete.</li>
+</ol>
+<p>A prompt that gets this reliably: <em>"Audit in causal order — reachability, discovery, crawl, indexing, on-page, content. Stop at the first layer that fails and say so. Quote the command and its raw output for every finding. List anything you could not verify under UNCHECKED with the reason. Do not infer a layer from the one above it."</em></p>
+<a class="cta" href="https://andrewhangyal.gumroad.com/l/pumpr?utm_source=hub&amp;utm_medium=guide&amp;utm_campaign=claude-code-seo-audit" rel="noopener">
+  <strong>Or run the audit from a stack that already knows the order</strong>
+  <span>The Forge SEO Skill Stack packages this audit as skills that fire on request — crawl checks, on-page passes, internal-link mapping and schema review, each with a stated stopping condition so the agent knows when it is done.</span>
+  <span class="price">$39 &middot; instant download &rarr;</span>
+</a>
+<h2>Common questions</h2>
+<dl class="faq">
+  <dt>Can Claude Code replace a paid SEO crawler?</dt>
+  <dd>For a site of a few dozen pages, an agent with shell access covers most of what a crawler reports — status codes, titles, headings, canonicals, internal links, sitemap coverage. Where paid tools stay ahead is scale, historical trend data, and index-status APIs that require credentials. For a small owned site the agent is usually enough; for a large one it is a supplement.</dd>
+  <dt>Why is my site crawled but not appearing in search?</dt>
+  <dd>Crawling and indexing are separate steps. A crawler fetching your pages daily is not a commitment to list them. Common causes include a very new domain with no inbound links, thin or duplicated content, a canonical tag pointing elsewhere, or a noindex header left over from staging. Search Console and Bing Webmaster Tools are the only sources that answer this definitively.</dd>
+  <dt>How do I check indexing without an account?</dt>
+  <dd>Reliably, you mostly cannot. Major engines disallow scraping their results pages, and the ones that permit it will serve a rate-limit page that mimics a zero-result page. If you try anyway, run a positive control — a small site you know is listed — in the same session, and treat any run where the control fails as inconclusive rather than negative.</dd>
+  <dt>What order should an SEO audit follow?</dt>
+  <dd>Causal order: reachability, then discovery, then crawl, then indexing, then on-page, then content. Each layer is meaningless if the one above it is broken, so stopping at the first failure saves the work that would have been wasted below it.</dd>
+</dl>
+<div class="disc">Independent guide. Not affiliated with or endorsed by Anthropic, Google, or Microsoft. Search engines change their behaviour without notice — treat every check here as a starting point and confirm against current official documentation before acting on it.</div>
+</main>
+<footer>
+<p><a href="https://tools.aingyal.com/">&larr; All AI tools &amp; guides</a></p>
+<p>Written after discovering that a site can be perfectly optimised and still invisible, for a reason no on-page work can fix.</p>
+</footer>
+</body>
+</html>
