@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://tools.aingyal.com/</loc><lastmod>2026-08-10</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://tools.aingyal.com/</loc><lastmod>2026-08-13</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://tools.aingyal.com/guides/questions-to-ask-your-doctor/</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tools.aingyal.com/guides/organize-medical-records/</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tools.aingyal.com/guides/form-an-llc-yourself/</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -10,4 +10,7 @@
   <url><loc>https://tools.aingyal.com/guides/estate-planning-checklist/</loc><lastmod>2026-08-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tools.aingyal.com/guides/deductible-vs-out-of-pocket-maximum/</loc><lastmod>2026-08-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tools.aingyal.com/guides/medication-list-what-to-track/</loc><lastmod>2026-08-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tools.aingyal.com/guides/claude-code-seo-audit/</loc><lastmod>2026-08-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tools.aingyal.com/guides/claude-code-for-marketing/</loc><lastmod>2026-08-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tools.aingyal.com/guides/landing-page-conversion-rate/</loc><lastmod>2026-08-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
