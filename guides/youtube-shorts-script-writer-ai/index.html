@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Using AI to Write YouTube Shorts Scripts: the Structure That Holds Retention</title>
+<meta name="description" content="A free guide to writing YouTube Shorts scripts with AI: why generated scripts lose retention, the open-loop structure that holds it, how to brief a model so the hook is specific rather than generic, and the review pass that catches a dead script before you record it.">
+<link rel="canonical" href="https://tools.aingyal.com/guides/youtube-shorts-script-writer-ai/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using AI to Write YouTube Shorts Scripts: the Structure That Holds Retention">
+<meta property="og:description" content="A free guide to writing YouTube Shorts scripts with AI: why generated scripts lose retention, the open-loop structure that holds it, how to brief a model so the hook is specific rather than generic, and the review pass that catches a dead script before you record it.">
+<meta property="og:url" content="https://tools.aingyal.com/guides/youtube-shorts-script-writer-ai/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Article",
+"headline": "Using AI to Write YouTube Shorts Scripts: the Structure That Holds Retention",
+"description": "A free guide to writing YouTube Shorts scripts with AI: why generated scripts lose retention, the open-loop structure that holds it, how to brief a model so the hook is specific rather than generic, and the review pass that catches a dead script before you record it.",
+"url": "https://tools.aingyal.com/guides/youtube-shorts-script-writer-ai/",
+"dateModified": "2026-08-14",
+"mainEntityOfPage": {
+"@type": "WebPage",
+"@id": "https://tools.aingyal.com/guides/youtube-shorts-script-writer-ai/"
+},
+"isAccessibleForFree": true
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "Why do AI-written Shorts scripts lose viewers so early?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Most resolve their own premise in the first few seconds. Good prose answers its topic sentence; short-form retention needs the opposite, with each part opening something before it closes the last. Briefing the model to hold a specific tension is what changes the shape."
+}
+},
+{
+"@type": "Question",
+"name": "How long should a YouTube Short script be?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Length follows the idea rather than a fixed target \u2014 a spoken script of roughly 45 to 60 seconds is a common working range, but a shorter piece that pays off beats a padded one that reaches a target. Platform limits change, so confirm current specifications directly."
+}
+},
+{
+"@type": "Question",
+"name": "Is it better to generate one script or many?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Many, for hooks especially. Generating ten openings and keeping one costs the same as generating one, and the strongest option is usually not the first sample."
+}
+},
+{
+"@type": "Question",
+"name": "Can AI write the whole video?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "It can carry the script, the title, the description and the captions. Performance, judgement about what is worth making, and whether a payoff actually lands are still yours \u2014 and the payoff is the part viewers remember."
+}
+}
+]
+}
+</script>
+<style>
+:root{--ink:#1a1a2e;--muted:#5a5a72;--line:#e6e6ef;--accent:#4a4ae0;--bg:#fbfbfe}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header,main,footer{max-width:760px;margin:0 auto;padding:0 20px}
+header{padding-top:40px}
+.crumb{font-size:.85rem;color:var(--muted);margin:0 0 18px}
+.crumb a{color:var(--accent);text-decoration:none}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .35em}
+.standfirst{font-size:1.08rem;color:var(--muted);margin:0 0 8px;max-width:62ch}
+.updated{font-size:.8rem;color:var(--muted);margin:0}
+main{padding-bottom:8px}
+h2{font-size:1.25rem;margin:2em 0 .4em;border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:4px}
+h3{font-size:1.02rem;margin:1.6em 0 .3em}
+p,li{max-width:68ch}
+ul,ol{padding-left:1.2em}
+li{margin:.35em 0}
+blockquote{margin:1.4em 0;padding:12px 18px;border-left:3px solid var(--accent);background:#fff;color:var(--muted)}
+.cta{display:block;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:18px 20px;margin:2.4em 0 1em;background:#fff;text-decoration:none;color:inherit}
+.cta:hover{box-shadow:0 8px 24px rgba(74,74,224,.12)}
+.cta strong{display:block;font-size:1.05rem;margin-bottom:.3em}
+.cta span{color:var(--muted);font-size:.94rem}
+.cta .price{color:var(--accent);font-weight:700}
+.faq dt{font-weight:600;margin:1.2em 0 .2em}
+.faq dd{margin:0;color:var(--muted);max-width:68ch}
+footer{padding:24px 20px 56px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);margin-top:40px}
+footer a{color:var(--accent)}
+.disc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:.9rem;color:var(--muted);margin:1.8em 0}
+.disc a{color:var(--accent)}
+pre{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:.86rem;line-height:1.55}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+p>code,li>code{background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+pre code{background:none;border:0;padding:0}
+</style>
+</head>
+<body>
+<header>
+<p class="crumb"><a href="https://tools.aingyal.com/">AI tools &amp; guides</a> &rsaquo; Free guides</p>
+<h1>Writing YouTube Shorts scripts with AI</h1>
+<p class="standfirst">Ask a model for a Shorts script and you get a hook, three facts and a call to subscribe. It scans fine and it loses the viewer at eight seconds. The problem is structural — the script has no reason for anyone to still be there at the end.</p>
+<p class="updated">Free to read &middot; last reviewed 2026-08-14</p>
+</header>
+<main>
+<h2>The generated script fails at the second sentence, not the first</h2>
+<p>Generated hooks are usually acceptable. What follows almost never is, and the reason is consistent: the script resolves its own premise immediately. It opens with a question, answers it in the next line, and then spends forty seconds on supporting detail nobody stayed for.</p>
+<p>Short-form retention runs on unresolved tension. If the first ten seconds answer the thing the first three seconds raised, there is no structural reason to watch the eleventh. A model will do this by default because a well-formed paragraph answers its own topic sentence — good prose habit, wrong shape for the format.</p>
+<p>What you are looking for instead is a script where the interesting part is always slightly ahead of where the viewer currently is.</p>
+<h2>The open-loop structure</h2>
+<p>A shape that survives contact with real uploads, in five beats:</p>
+<ol>
+<li><strong>Hook (0–3s)</strong> — a specific claim, a surprising concrete detail, or a visible situation. Not a question, and not "here are five tips".</li>
+<li><strong>Stakes (3–8s)</strong> — why the thing in the hook matters, stated in one line. This is the beat most generated scripts skip entirely.</li>
+<li><strong>Escalation (8–35s)</strong> — the body, arranged so each segment opens something before it closes the previous one. If any segment can be removed without the next one breaking, it is filler.</li>
+<li><strong>Resolution (35–50s)</strong> — pay off the hook properly. A payoff that under-delivers on the hook costs more than a weaker hook would have.</li>
+<li><strong>Exit (last 3s)</strong> — one line that either loops back to the opening or points at the obvious next thing. Not a subscribe request stapled to the end.</li>
+</ol>
+<p>The timings are a starting frame, not a rule. What matters is the ordering property: nothing closes before something else has opened.</p>
+<h2>Brief the model so the hook is specific</h2>
+<p>Generic hooks come from generic briefs. A model asked for "a hook about productivity" has nothing to be specific about, so it produces the average of every productivity hook.</p>
+<p>What to put in the brief:</p>
+<ul>
+<li><strong>One named audience</strong> — not "creators" but a person with a situation. The narrower it is, the more concrete the language becomes.</li>
+<li><strong>The single concrete detail the video is actually about</strong> — a number, a name, an object, a moment. Abstractions generate abstractions.</li>
+<li><strong>The tension you want held</strong>, stated explicitly, so the model knows what it is not allowed to resolve early.</li>
+<li><strong>An exclusion list</strong> — openings you have seen too often and will not use. This does more work than any instruction about tone.</li>
+<li><strong>The format constraint</strong> — spoken aloud, one speaker, a target duration, no on-screen text dependency if you will not add any.</li>
+</ul>
+<p>Asking for ten hooks and keeping one is a better use of a generation than asking for one and editing it. The cost is identical and the variance is where the good ones live.</p>
+<h2>The review pass that catches a dead script</h2>
+<p>Cheaper than recording and reviewing. Read the draft against five questions, and treat any "no" as a rewrite rather than a polish:</p>
+<ol>
+<li>Read only the first sentence. Is there a specific reason to hear the second one?</li>
+<li>Delete each body segment in turn. Does anything break? If not, that segment is filler.</li>
+<li>Does the payoff deliver at least what the hook implied? Under-delivery is the most damaging failure in the format.</li>
+<li>Read it aloud at pace. Any sentence you stumble on is a sentence written for the eye and not the mouth.</li>
+<li>Is there a single sentence you would quote to a friend? If not, the script is informative and forgettable.</li>
+</ol>
+<p>An agent can run all five against its own draft before you see it, which is the point of putting the pass in a skill rather than in your head.</p>
+<h2>One script is four assets</h2>
+<p>The script is the expensive part. Once it exists, the surrounding assets are near-free and are usually left on the table:</p>
+<ul>
+<li>The <strong>title</strong>, taken from the hook line rather than written separately — they are solving the same problem.</li>
+<li>The <strong>description</strong>, which is searchable text and one of the few places you control the words a platform can match against.</li>
+<li><strong>Captions</strong>, since a large share of short-form is watched without sound.</li>
+<li>A <strong>text version</strong> for wherever else you publish, which costs one more pass over material you already have.</li>
+</ul>
+<p>Doing these in the same session as the script keeps them consistent. Doing them a week later produces four assets that quietly disagree with each other.</p>
+<a class="cta" href="https://andrewhangyal.gumroad.com/l/mcgdqpi?utm_source=hub&amp;utm_medium=guide&amp;utm_campaign=youtube-shorts-script-writer-ai" rel="noopener">
+  <strong>Or run the whole flow from a creator stack</strong>
+  <span>The Creator Studio Skill Stack packages this as skills that fire on request — hook generation against a stated audience, an open-loop script pass, a retention review that flags dead sections before you record, and a repurposing step that turns one script into the descriptions and captions around it.</span>
+  <span class="price">$9+ &middot; instant download &rarr;</span>
+</a>
+<h2>Common questions</h2>
+<dl class="faq">
+  <dt>Why do AI-written Shorts scripts lose viewers so early?</dt>
+  <dd>Most resolve their own premise in the first few seconds. Good prose answers its topic sentence; short-form retention needs the opposite, with each part opening something before it closes the last. Briefing the model to hold a specific tension is what changes the shape.</dd>
+  <dt>How long should a YouTube Short script be?</dt>
+  <dd>Length follows the idea rather than a fixed target — a spoken script of roughly 45 to 60 seconds is a common working range, but a shorter piece that pays off beats a padded one that reaches a target. Platform limits change, so confirm current specifications directly.</dd>
+  <dt>Is it better to generate one script or many?</dt>
+  <dd>Many, for hooks especially. Generating ten openings and keeping one costs the same as generating one, and the strongest option is usually not the first sample.</dd>
+  <dt>Can AI write the whole video?</dt>
+  <dd>It can carry the script, the title, the description and the captions. Performance, judgement about what is worth making, and whether a payoff actually lands are still yours — and the payoff is the part viewers remember.</dd>
+</dl>
+<div class="disc">Independent guide. Not affiliated with or endorsed by YouTube, Google, or Anthropic. Platform behaviour, ranking and monetisation rules change without notice — treat everything here as a starting point and confirm against current official platform documentation. Nothing here is a promise about views, growth, or income.</div>
+</main>
+<footer>
+<p><a href="https://tools.aingyal.com/">&larr; All AI tools &amp; guides</a></p>
+<p>Written after reading forty generated scripts that were all technically correct and none of which anyone would finish.</p>
+</footer>
+</body>
+</html>
