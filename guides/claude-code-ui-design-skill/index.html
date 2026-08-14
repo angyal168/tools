@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code UI Design: Why the Output Looks Generic, and the Skill Structure That Fixes It</title>
+<meta name="description" content="A free practical guide to designing interfaces with Claude Code: why unconstrained prompts converge on the same generic layout, how to extract real design tokens from a reference instead of eyeballing them, the constraint set that produces distinctive output, and how to package the whole thing as a reusable skill.">
+<link rel="canonical" href="https://tools.aingyal.com/guides/claude-code-ui-design-skill/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claude Code UI Design: Why the Output Looks Generic, and the Skill Structure That Fixes It">
+<meta property="og:description" content="A free practical guide to designing interfaces with Claude Code: why unconstrained prompts converge on the same generic layout, how to extract real design tokens from a reference instead of eyeballing them, the constraint set that produces distinctive output, and how to package the whole thing as a reusable skill.">
+<meta property="og:url" content="https://tools.aingyal.com/guides/claude-code-ui-design-skill/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Article",
+"headline": "Claude Code UI Design: Why the Output Looks Generic, and the Skill Structure That Fixes It",
+"description": "A free practical guide to designing interfaces with Claude Code: why unconstrained prompts converge on the same generic layout, how to extract real design tokens from a reference instead of eyeballing them, the constraint set that produces distinctive output, and how to package the whole thing as a reusable skill.",
+"url": "https://tools.aingyal.com/guides/claude-code-ui-design-skill/",
+"dateModified": "2026-08-14",
+"mainEntityOfPage": {
+"@type": "WebPage",
+"@id": "https://tools.aingyal.com/guides/claude-code-ui-design-skill/"
+},
+"isAccessibleForFree": true
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "Why does Claude Code keep producing the same layout?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Because \"clean and modern\" excludes almost nothing, so each generation samples from the same broad space and lands near its centre. Output diverges when the brief rules things out \u2014 an exclusion list, a structural constraint and extracted reference values change results far more than a longer description does."
+}
+},
+{
+"@type": "Question",
+"name": "Is a design skill better than just a good prompt?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "For a one-off, a good prompt is fine. A skill earns its keep on the third repeat, because it carries the ordered procedure and the stopping condition rather than relying on you remembering both. The content is the same; what changes is that it fires the same way every time."
+}
+},
+{
+"@type": "Question",
+"name": "Can an agent extract design tokens from any site?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "From a live page it can usually read computed styles directly, which gives real values rather than estimates. From an image it cannot \u2014 that is measured approximation, and it is worth having the agent say so rather than present a guess as an extraction."
+}
+},
+{
+"@type": "Question",
+"name": "How do I stop an agent claiming a page works when it does not?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Put rendering inside the loop and make the agent read its own captures back before reporting. A claim based on markup it never rendered is the failure mode; a screenshot it had to look at is the cheapest available correction."
+}
+}
+]
+}
+</script>
+<style>
+:root{--ink:#1a1a2e;--muted:#5a5a72;--line:#e6e6ef;--accent:#4a4ae0;--bg:#fbfbfe}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header,main,footer{max-width:760px;margin:0 auto;padding:0 20px}
+header{padding-top:40px}
+.crumb{font-size:.85rem;color:var(--muted);margin:0 0 18px}
+.crumb a{color:var(--accent);text-decoration:none}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .35em}
+.standfirst{font-size:1.08rem;color:var(--muted);margin:0 0 8px;max-width:62ch}
+.updated{font-size:.8rem;color:var(--muted);margin:0}
+main{padding-bottom:8px}
+h2{font-size:1.25rem;margin:2em 0 .4em;border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:4px}
+h3{font-size:1.02rem;margin:1.6em 0 .3em}
+p,li{max-width:68ch}
+ul,ol{padding-left:1.2em}
+li{margin:.35em 0}
+blockquote{margin:1.4em 0;padding:12px 18px;border-left:3px solid var(--accent);background:#fff;color:var(--muted)}
+.cta{display:block;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:18px 20px;margin:2.4em 0 1em;background:#fff;text-decoration:none;color:inherit}
+.cta:hover{box-shadow:0 8px 24px rgba(74,74,224,.12)}
+.cta strong{display:block;font-size:1.05rem;margin-bottom:.3em}
+.cta span{color:var(--muted);font-size:.94rem}
+.cta .price{color:var(--accent);font-weight:700}
+.faq dt{font-weight:600;margin:1.2em 0 .2em}
+.faq dd{margin:0;color:var(--muted);max-width:68ch}
+footer{padding:24px 20px 56px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);margin-top:40px}
+footer a{color:var(--accent)}
+.disc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:.9rem;color:var(--muted);margin:1.8em 0}
+.disc a{color:var(--accent)}
+pre{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:.86rem;line-height:1.55}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+p>code,li>code{background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+pre code{background:none;border:0;padding:0}
+</style>
+</head>
+<body>
+<header>
+<p class="crumb"><a href="https://tools.aingyal.com/">AI tools &amp; guides</a> &rsaquo; Free guides</p>
+<h1>Getting Claude Code to design a UI that does not look generic</h1>
+<p class="standfirst">An agent will happily produce a purple gradient, a rounded card grid and a hero with three feature columns for any brief you give it. That is not a model limitation — it is what happens when a design request carries no constraints, no reference, and no stopping condition. Here is the structure that changes the output.</p>
+<p class="updated">Free to read &middot; last reviewed 2026-08-14</p>
+</header>
+<main>
+<h2>The generic look is a constraint problem, not a taste problem</h2>
+<p>Ask an agent for "a clean, modern landing page" and you will get something close to the statistical centre of every landing page it has ever seen: a centred hero, a gradient somewhere, three feature cards, a testimonial strip, a footer. It is competent. It is also indistinguishable from the last one.</p>
+<p>This is the correct output for the prompt. "Clean" and "modern" are not constraints — they exclude almost nothing. A design brief only becomes generative when it rules things <em>out</em>. The four levers that actually move output away from the centre:</p>
+<ol>
+<li><strong>A reference with extracted values</strong> — not "like Stripe", but the actual type scale, spacing rhythm and palette, pulled as numbers.</li>
+<li><strong>An explicit exclusion list</strong> — the shapes you have already seen too often and will not accept.</li>
+<li><strong>A structural constraint</strong> — something about the layout that cannot be satisfied by the default arrangement.</li>
+<li><strong>A stopping condition</strong> — what "done" means, so the agent stops polishing the wrong layer.</li>
+</ol>
+<p>Give an agent all four and the output stops averaging. Give it none and no amount of re-prompting will help, because each re-roll samples from the same unconstrained space.</p>
+<h2>Extract the reference, do not describe it</h2>
+<p>The single highest-leverage change: stop describing what a reference looks like and start handing over its real values. An agent with shell access can read them directly.</p>
+<p>If the reference is a live page, computed styles are the ground truth — headless-browser tooling can return the resolved font stack, the actual pixel type scale, the spacing values in use, and the palette as it renders rather than as it was authored. If the reference is a file, the tokens are usually already sitting in a stylesheet or a variables block.</p>
+<p>What to pull, in rough order of how much it changes the feel:</p>
+<ul>
+<li><strong>Type scale</strong> — the actual sizes and line heights at each level, and the ratio between them. Most generic output uses a 1.25 ratio on a system font stack; most distinctive design does not.</li>
+<li><strong>Spacing rhythm</strong> — the base unit and which multiples appear. A page built on 8px multiples reads differently from one built on 6, and neither reads like one with arbitrary values.</li>
+<li><strong>The full palette, including the accent</strong> — this is the one most often dropped. An agent handed only the primary and neutral colours will produce something that reads monochrome and flat, and the fix is not "add more contrast", it is that a colour was never passed.</li>
+<li><strong>Border, radius and shadow treatment</strong> — cheap to copy, and a large share of what makes a surface feel like it belongs to a family.</li>
+</ul>
+<p>One caution worth stating plainly: extracting values to understand a design is not the same as reproducing someone else's brand. Learning a spacing rhythm is ordinary practice; cloning a competitor's visual identity is a rights question, and it belongs with the rights holder before it belongs in a build.</p>
+<h2>The exclusion list does more work than the description</h2>
+<p>A description tells the agent where to aim. An exclusion list tells it where the crowded ground is. In practice the second one changes output more, because the crowded ground is exactly where an unconstrained sample lands.</p>
+<p>A workable starting list, worth editing rather than copying — the point is that it ends up <em>yours</em>:</p>
+<ul>
+<li>No centred hero with a subtitle and two buttons side by side.</li>
+<li>No three-column feature grid with an icon above each heading.</li>
+<li>No purple-to-blue gradient, and no gradient as the primary brand device.</li>
+<li>No card with a 12px radius and a soft drop shadow as the default container.</li>
+<li>No system font stack unless the reference uses one deliberately.</li>
+</ul>
+<p>Pair each exclusion with the structural constraint that replaces it — an asymmetric layout, a rule-and-whitespace divider instead of a card, a single strong accent used sparingly rather than a gradient. An exclusion with no replacement just moves the output to the second-most-average option.</p>
+<h2>Make the agent look at what it built</h2>
+<p>The most common failure in agent-driven UI work is not a bad layout — it is an agent reporting success on markup it never rendered. Text describing a page and the page itself diverge constantly: an overflow, a broken wrap at a narrow width, an accent colour that never made it into the stylesheet, contrast that fails on the muted text.</p>
+<p>The fix is to make rendering part of the loop rather than a thing you do afterwards. A workable cycle:</p>
+<ol>
+<li>Build the page.</li>
+<li>Render and capture it at a wide width, a tablet width, and a narrow width.</li>
+<li>Have the agent read its own captures back and list what is wrong before you look.</li>
+<li>Fix, re-render, repeat until the list is empty.</li>
+<li>Only then bring in taste.</li>
+</ol>
+<p>Steps 2 and 3 are what separate an agent that iterates from one that guesses. They also make the stopping condition concrete: done is "three widths render, contrast passes, no overflow, accent present", not "looks good".</p>
+<h2>Package it as a skill so you stop retyping it</h2>
+<p>Everything above is a procedure, which means it belongs in a skill rather than in a prompt you rewrite each time. The structure that survives contact with real work:</p>
+<ul>
+<li><strong>A trigger description</strong> specific enough that it fires on the right requests and not on every mention of the word "design".</li>
+<li><strong>An inputs block</strong> — reference (URL or file), exclusion list, structural constraint, target widths.</li>
+<li><strong>An ordered procedure</strong> — extract, draft, render, self-review, fix, gate. Order is load-bearing; a self-review before a render is theatre.</li>
+<li><strong>A stopping condition</strong>, written as a checklist the agent can evaluate against its own output.</li>
+<li><strong>An escape hatch</strong> — what to do when there is no extractable reference, so the skill degrades to "measured approximation, flagged as approximate" instead of quietly guessing.</li>
+</ul>
+<p>The escape hatch matters more than it sounds. Most real briefs arrive with a screenshot rather than a live URL, and a skill that only works on the ideal input gets abandoned the second time you use it.</p>
+<a class="cta" href="https://andrewhangyal.gumroad.com/l/zcqltu?utm_source=hub&amp;utm_medium=guide&amp;utm_campaign=claude-code-ui-design-skill" rel="noopener">
+  <strong>Or start from a design stack that already carries the constraints</strong>
+  <span>The Forge Design Skill Stack packages this as skills that fire on request — token extraction from a reference, a layout pass with an explicit constraint set, a contrast and spacing audit, and a rendered-output check so the agent verifies what it built instead of describing it. Built for people who would rather edit a strong first draft than argue a weak one into shape.</span>
+  <span class="price">$49 &middot; instant download &rarr;</span>
+</a>
+<h2>Common questions</h2>
+<dl class="faq">
+  <dt>Why does Claude Code keep producing the same layout?</dt>
+  <dd>Because "clean and modern" excludes almost nothing, so each generation samples from the same broad space and lands near its centre. Output diverges when the brief rules things out — an exclusion list, a structural constraint and extracted reference values change results far more than a longer description does.</dd>
+  <dt>Is a design skill better than just a good prompt?</dt>
+  <dd>For a one-off, a good prompt is fine. A skill earns its keep on the third repeat, because it carries the ordered procedure and the stopping condition rather than relying on you remembering both. The content is the same; what changes is that it fires the same way every time.</dd>
+  <dt>Can an agent extract design tokens from any site?</dt>
+  <dd>From a live page it can usually read computed styles directly, which gives real values rather than estimates. From an image it cannot — that is measured approximation, and it is worth having the agent say so rather than present a guess as an extraction.</dd>
+  <dt>How do I stop an agent claiming a page works when it does not?</dt>
+  <dd>Put rendering inside the loop and make the agent read its own captures back before reporting. A claim based on markup it never rendered is the failure mode; a screenshot it had to look at is the cheapest available correction.</dd>
+</dl>
+<div class="disc">Independent guide. Not affiliated with or endorsed by Anthropic. Model behaviour changes between releases — treat every technique here as a starting point and confirm against current official documentation. Nothing here is legal advice about reproducing another party's brand or design; that is a question for the rights holder or your own counsel.</div>
+</main>
+<footer>
+<p><a href="https://tools.aingyal.com/">&larr; All AI tools &amp; guides</a></p>
+<p>Written after watching the same three-column feature section appear in four unrelated projects in one week.</p>
+</footer>
+</body>
+</html>
