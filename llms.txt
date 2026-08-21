@@ -1,0 +1,58 @@
+# tools.aingyal.com — free guides and practical wizards
+
+> An independent one-person workshop. The guides below are free to read with
+> no signup and no email capture. Each one points to a single paid tool that
+> does the rest of the work. Products are spreadsheets, checklists and AI
+> prompt packs — tools for organising information.
+>
+> Health and caregiving items are marked [health]. Those are organising tools
+> only: not medical, legal or tax advice, not a diagnosis, and not for
+> emergencies. Nothing on this site is individualised advice.
+
+## Free guides
+
+- [Questions to Ask Your Doctor: A Printable Appointment Checklist](https://tools.aingyal.com/guides/questions-to-ask-your-doctor/) [health]
+- [How to Organize Medical Records for Yourself or a Parent (Free Structure)](https://tools.aingyal.com/guides/organize-medical-records/) [health]
+- [How to Form an LLC Yourself: The 8 Steps, In Order](https://tools.aingyal.com/guides/form-an-llc-yourself/)
+- [Medicare Enrollment Deadlines Explained: IEP, GEP, SEP and Open Enrollment](https://tools.aingyal.com/guides/medicare-enrollment-deadlines/) [health]
+- [Wedding Budget Breakdown: What Percentage Goes Where](https://tools.aingyal.com/guides/wedding-budget-percentages/)
+- [How to Write a Claude Code Skill (And Why Most of Them Never Fire)](https://tools.aingyal.com/guides/how-to-write-a-claude-code-skill/)
+- [Estate Planning Checklist: The Documents and Details People Actually Forget](https://tools.aingyal.com/guides/estate-planning-checklist/)
+- [Deductible vs Out-of-Pocket Maximum: What Each One Actually Means](https://tools.aingyal.com/guides/deductible-vs-out-of-pocket-maximum/) [health]
+- [How to Keep a Medication List: What Belongs On It, and Why It Keeps Going Stale](https://tools.aingyal.com/guides/medication-list-what-to-track/) [health]
+- [How to Run an SEO Audit with Claude Code (Without a Paid Crawler)](https://tools.aingyal.com/guides/claude-code-seo-audit/)
+- [Claude Code for Marketing: Why a Coding Agent Beats a Chat Window](https://tools.aingyal.com/guides/claude-code-for-marketing/)
+- [How to Improve Landing Page Conversion Rate (When You Have Almost No Traffic)](https://tools.aingyal.com/guides/landing-page-conversion-rate/)
+- [Claude Code UI Design: Why the Output Looks Generic, and the Skill Structure That Fixes It](https://tools.aingyal.com/guides/claude-code-ui-design-skill/)
+- [A Life Admin Checklist That Survives Contact With a Busy Week](https://tools.aingyal.com/guides/life-admin-checklist/)
+- [Using AI to Write YouTube Shorts Scripts: the Structure That Holds Retention](https://tools.aingyal.com/guides/youtube-shorts-script-writer-ai/)
+- [Can You Use Bitters in a Mocktail? What Bitters Actually Do to a Drink](https://tools.aingyal.com/guides/bitters-in-a-mocktail/)
+- [How to Organise an Elderly Parent's Papers: What to Gather, in What Order](https://tools.aingyal.com/guides/organize-elderly-parents-papers/) [health]
+- [Steps to Take With Aging Parents, in the Order They Actually Matter](https://tools.aingyal.com/guides/steps-to-take-with-aging-parents/) [health]
+
+## Paid tools
+
+- [The AI-Powered Health Advocate: 50+ Claude or ChatGPT Prompts for Chronic Illness Patients](https://andrewhangyal.gumroad.com/l/hocdy?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — from $9 USD, instant download. [health]
+- [Medical History Organizer: AI-Powered Interactive Wizard](https://andrewhangyal.gumroad.com/l/ogqaml?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $8.99 USD, instant download. [health]
+- [LLC Setup Wizard: Form Your LLC Without a Lawyer](https://andrewhangyal.gumroad.com/l/sqiry?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $9.99 USD, instant download.
+- [Medicare Enrollment Wizard: Your Personal AI Guide to Medicare](https://andrewhangyal.gumroad.com/l/lljne?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $9.99 USD, instant download. [health]
+- [The Ultimate Wedding Planner Spreadsheet -- Budget, Guests, Vendors ](https://andrewhangyal.gumroad.com/l/esrkyu?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $17 USD, instant download.
+- [The Forge Full Stack Bundle for Claude Code](https://andrewhangyal.gumroad.com/l/nlajnm?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $129 USD, instant download.
+- [Estate Planning Checklist Wizard: Get Organized Before the Attorney Meeting](https://andrewhangyal.gumroad.com/l/sptrie?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $9.99 USD, instant download.
+- [Insurance Comparison Wizard: Pick the Right Health Plan (Stop Overpaying)](https://andrewhangyal.gumroad.com/l/awumy?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $8.99 USD, instant download. [health]
+- [Medication Command Center](https://andrewhangyal.gumroad.com/l/hgbwze?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $14 USD, instant download. [health]
+- [The Forge SEO Skill Stack for Claude Code](https://andrewhangyal.gumroad.com/l/pumpr?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $39 USD, instant download.
+- [The Forge Content Marketing Skill Stack for Claude Code](https://andrewhangyal.gumroad.com/l/rbvkx?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $49 USD, instant download.
+- [The Forge CRO Pack for Claude Code](https://andrewhangyal.gumroad.com/l/tftmba?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $39 USD, instant download.
+- [The Forge Design Skill Stack for Claude Code](https://andrewhangyal.gumroad.com/l/zcqltu?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $49 USD, instant download.
+- [Life Admin Wizards: 5 AI-Powered Guides (Medical, Medicare, LLC, Estate, Insurance)](https://andrewhangyal.gumroad.com/l/lltoll?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $29.99 USD, instant download.
+- [The Creator Studio Skill Stack for Claude Code](https://andrewhangyal.gumroad.com/l/mcgdqpi?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — from $9 USD, instant download.
+- [Sober Sips & Bitters & Belly: 12 Herbal Mocktail Recipes](https://andrewhangyal.gumroad.com/l/bleyvv?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $7.99 USD, instant download.
+- [Caregiver Command Center](https://andrewhangyal.gumroad.com/l/cebmxg?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $17 USD, instant download. [health]
+- [Family Health Command Center (2-Pack)](https://andrewhangyal.gumroad.com/l/hvkacv?utm_source=hub&utm_medium=llms_txt&utm_campaign=llms_txt) — $24 USD, instant download. [health]
+
+## Reference
+
+- [All guides and tools](https://tools.aingyal.com/)
+- [Sitemap](https://tools.aingyal.com/sitemap.xml)
+- [Free developer tools, no signup](https://forge-node.tail2b516d.ts.net/)
