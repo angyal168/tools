@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Implement Schema Markup: The Types Worth Adding, and Where It Goes</title>
+<meta name="description" content="A free practical guide to implementing schema markup: JSON-LD versus microdata, the schema types that actually earn rich results, where the block goes in the HTML, how to validate it, and the content-mismatch failure that gets structured data ignored.">
+<link rel="canonical" href="https://tools.aingyal.com/guides/how-to-implement-schema-markup/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Implement Schema Markup: The Types Worth Adding, and Where It Goes">
+<meta property="og:description" content="A free practical guide to implementing schema markup: JSON-LD versus microdata, the schema types that actually earn rich results, where the block goes in the HTML, how to validate it, and the content-mismatch failure that gets structured data ignored.">
+<meta property="og:url" content="https://tools.aingyal.com/guides/how-to-implement-schema-markup/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Article",
+"headline": "How to Implement Schema Markup: The Types Worth Adding, and Where It Goes",
+"description": "A free practical guide to implementing schema markup: JSON-LD versus microdata, the schema types that actually earn rich results, where the block goes in the HTML, how to validate it, and the content-mismatch failure that gets structured data ignored.",
+"url": "https://tools.aingyal.com/guides/how-to-implement-schema-markup/",
+"dateModified": "2026-09-18",
+"mainEntityOfPage": {
+"@type": "WebPage",
+"@id": "https://tools.aingyal.com/guides/how-to-implement-schema-markup/"
+},
+"isAccessibleForFree": true
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "What is schema markup?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "A block of structured data, written in the shared schema.org vocabulary, that states explicitly what a page contains \u2014 that this is a product, this is its price, this is its availability \u2014 instead of leaving a search engine to infer it from the text. It is normally added as JSON-LD in a script tag."
+}
+},
+{
+"@type": "Question",
+"name": "Does schema markup improve rankings?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "It is not a ranking factor in the way a link or the content itself is. What it does is make a page eligible for richer result formats, and those formats can change how many people click a result that was already ranking. Engines describe eligibility, never entitlement, and frequently show a plain result anyway."
+}
+},
+{
+"@type": "Question",
+"name": "Should I use JSON-LD or microdata?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "JSON-LD in nearly all cases. It lives in one script block rather than being threaded through your HTML attributes, so a layout change cannot break the data, and it is the format the major engines document first. Microdata mainly persists in older templates."
+}
+},
+{
+"@type": "Question",
+"name": "Where does schema markup go on a page?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Inside a script tag of type application/ld+json. It is valid anywhere in the document, and the head is the easier convention to audit because there is one place to look. One block per page covering that page's entities is cleaner than several scattered ones."
+}
+},
+{
+"@type": "Question",
+"name": "What are the most useful types of schema markup?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "For most sites: Organization or Person and WebSite site-wide, BreadcrumbList on hierarchical templates, and then the single content type that matches the page \u2014 Article, Product with Offer, Recipe, Event or LocalBusiness. The remaining hundreds of types rarely repay the effort."
+}
+},
+{
+"@type": "Question",
+"name": "Why is my valid schema markup being ignored?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "The most common reason is a mismatch between the markup and what a visitor actually sees \u2014 FAQ markup on a page with no visible questions, ratings that are not displayed, or a marked-up price that differs from the rendered one. A validator only checks syntax and required properties, so it cannot detect any of these."
+}
+}
+]
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Product",
+"name": "The Forge SEO Skill Stack for Claude Code",
+"description": "The Forge SEO Skill Stack includes a schema review that walks every template, reports which types are present, which are malformed and which contradict the visible page \u2014 the third being the one a validator will not tell you about.",
+"url": "https://andrewhangyal.gumroad.com/l/pumpr?utm_source=hub&utm_medium=guide&utm_campaign=how-to-implement-schema-markup",
+"brand": {
+"@type": "Brand",
+"name": "The Living Forge"
+},
+"offers": {
+"@type": "Offer",
+"price": "39",
+"priceCurrency": "USD",
+"url": "https://andrewhangyal.gumroad.com/l/pumpr?utm_source=hub&utm_medium=guide&utm_campaign=how-to-implement-schema-markup",
+"availability": "https://schema.org/InStock",
+"seller": {
+"@type": "Organization",
+"name": "The Living Forge"
+}
+}
+}
+</script>
+<style>
+:root{--ink:#1a1a2e;--muted:#5a5a72;--line:#e6e6ef;--accent:#4a4ae0;--bg:#fbfbfe}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header,main,footer{max-width:760px;margin:0 auto;padding:0 20px}
+header{padding-top:40px}
+.crumb{font-size:.85rem;color:var(--muted);margin:0 0 18px}
+.crumb a{color:var(--accent);text-decoration:none}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 .35em}
+.standfirst{font-size:1.08rem;color:var(--muted);margin:0 0 8px;max-width:62ch}
+.updated{font-size:.8rem;color:var(--muted);margin:0}
+main{padding-bottom:8px}
+h2{font-size:1.25rem;margin:2em 0 .4em;border-bottom:2px solid var(--accent);display:inline-block;padding-bottom:4px}
+h3{font-size:1.02rem;margin:1.6em 0 .3em}
+p,li{max-width:68ch}
+ul,ol{padding-left:1.2em}
+li{margin:.35em 0}
+blockquote{margin:1.4em 0;padding:12px 18px;border-left:3px solid var(--accent);background:#fff;color:var(--muted)}
+.cta{display:block;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:18px 20px;margin:2.4em 0 1em;background:#fff;text-decoration:none;color:inherit}
+.cta:hover{box-shadow:0 8px 24px rgba(74,74,224,.12)}
+.cta strong{display:block;font-size:1.05rem;margin-bottom:.3em}
+.cta span{color:var(--muted);font-size:.94rem}
+.cta .price{color:var(--accent);font-weight:700}
+.faq dt{font-weight:600;margin:1.2em 0 .2em}
+.faq dd{margin:0;color:var(--muted);max-width:68ch}
+footer{padding:24px 20px 56px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);margin-top:40px}
+footer a{color:var(--accent)}
+nav.related{margin:2.4em 0 1em;padding-top:18px;border-top:1px solid var(--line)}
+nav.related h2{font-size:1.05rem;border:0;margin:0 0 .5em;padding:0;display:block}
+nav.related ul{list-style:none;padding:0;margin:0}
+nav.related li{margin:.4em 0}
+nav.related a{color:var(--accent);text-decoration:none}
+nav.related a:hover{text-decoration:underline}
+.disc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:.9rem;color:var(--muted);margin:1.8em 0}
+.disc a{color:var(--accent)}
+pre{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:.86rem;line-height:1.55}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+p>code,li>code{background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+pre code{background:none;border:0;padding:0}
+</style>
+</head>
+<body>
+<header>
+<p class="crumb"><a href="https://tools.aingyal.com/">AI tools &amp; guides</a> &rsaquo; Free guides</p>
+<h1>How to implement schema markup — the types worth adding, and where it goes</h1>
+<p class="standfirst">Schema markup is a block of JSON that tells a search engine what a page is rather than making it guess. Here is what to add, where to put it, how to validate it, and the failure that silently undoes all of it.</p>
+<p class="updated">Free to read &middot; last reviewed 2026-09-18</p>
+</header>
+<main>
+<h2>What schema markup is, in one paragraph</h2>
+<p>A search engine reading your page sees text and tags. It can infer that a number is probably a price or that a block is probably a recipe, and it is quite good at inferring, but it is still inferring. Schema markup is a block of structured data, using the shared vocabulary at schema.org, that states it outright: this is a Product, this is its price, this is its availability. That certainty is what can make a page eligible for the richer result formats — review stars, FAQ dropdowns, recipe cards, event dates.</p>
+<p><strong>Eligible, not entitled.</strong> Every engine reserves the right to show a plain result anyway, and they routinely do. Markup removes ambiguity; it does not buy placement, and any tool promising a rich result in exchange for markup is selling the wrong thing.</p>
+<h2>Use JSON-LD, and put it in the head</h2>
+<p>There are three ways to express structured data: JSON-LD, microdata and RDFa. In practice, use JSON-LD unless you have a specific reason not to.</p>
+<p>Microdata and RDFa interleave attributes through your visible HTML, so the markup and the layout are welded together and a template change breaks the data. JSON-LD sits in a single <code>&lt;script type="application/ld+json"&gt;</code> block, separate from the markup it describes. It can be generated, diffed, tested and moved without touching the layout, and it is the format the major engines document first.</p>
+<p>Put the block in <code>&lt;head&gt;</code>. It is valid in <code>&lt;body&gt;</code> too, and head is easier to audit because there is exactly one place to look. One block per page covering everything on that page is cleaner than several scattered blocks, and the entities inside it can reference each other by <code>@id</code>.</p>
+<h2>The types that are worth your time</h2>
+<p>There are hundreds of schema types. A small handful do nearly all the work for a normal site.</p>
+<ul>
+<li><strong>Organization</strong> or <strong>Person</strong> — who publishes the site. One block, site-wide, carrying name, logo, URL and social profiles. This is the identity everything else hangs off.</li>
+<li><strong>WebSite</strong> — the site itself, and the place a site-search action is declared if you want one.</li>
+<li><strong>BreadcrumbList</strong> — the page's position in the hierarchy. Cheap to generate, and it changes how the URL line is displayed.</li>
+<li><strong>Article</strong> / <strong>BlogPosting</strong> — headline, author, dates published and modified. Content sites should treat this as the default.</li>
+<li><strong>Product</strong> with <strong>Offer</strong> — name, image, description, price, currency, availability. The one with the most direct commercial consequence.</li>
+<li><strong>FAQPage</strong> — questions and answers that are <em>visibly on the page</em>. See the failure below.</li>
+<li><strong>HowTo</strong>, <strong>Recipe</strong>, <strong>Event</strong>, <strong>LocalBusiness</strong> — worth it when the page genuinely is one of those things, and not otherwise.</li>
+</ul>
+<p>Fill the required properties, then the recommended ones you can populate honestly, and stop. A sparse accurate block beats an elaborate one padded with plausible values.</p>
+<h2>The failure that undoes all of it</h2>
+<p>Structured data has to describe what a visitor actually sees on that page. Markup that is valid, parses cleanly and passes every test can still be disregarded — or worse, earn a manual action — when it does not match the visible content.</p>
+<p>The common versions are all the same mistake:</p>
+<ul>
+<li>An <code>FAQPage</code> block on a page with no questions visible on it.</li>
+<li><code>Review</code> or <code>AggregateRating</code> for reviews that are not shown on the page, or that the site owner wrote.</li>
+<li>A <code>Product</code> price in the markup that differs from the price rendered on screen.</li>
+<li>A <code>datePublished</code> that moves every night so the content looks fresh.</li>
+</ul>
+<p>A validator checks syntax and required properties. It cannot see your rendered page, so it will happily approve every one of these. This is the gap that a human read or a crawl-based review catches and a validator never does.</p>
+<h2>Generate it, then validate it</h2>
+<p>Hand-writing JSON-LD per page is how prices go stale and dates drift. Generate it from the same data the page renders from — the template, the CMS record, the product object — so the markup cannot disagree with the page without the page itself being wrong. Generators and plugins are fine for exactly this reason; the thing to check is that the one you choose reads live data rather than asking you to retype it.</p>
+<p>Then validate on two axes, because they answer different questions:</p>
+<ol>
+<li><strong>Is it well-formed?</strong> Schema.org's own validator checks the vocabulary broadly.</li>
+<li><strong>Is this engine eligible to do anything with it?</strong> Google's Rich Results Test and Search Console's enhancement reports answer for Google specifically; Bing's Webmaster Tools has an equivalent. A block can be perfectly valid and still not be a type that particular engine renders.</li>
+</ol>
+<p>Test the rendered page, not the template. If the JSON-LD is injected by JavaScript, fetch the URL as the engine does and confirm the block is present in what comes back.</p>
+<h2>A sane order to do it in</h2>
+<ol>
+<li>Add Organization and WebSite once, site-wide.</li>
+<li>Add BreadcrumbList to templates that have a hierarchy.</li>
+<li>Add the one content type that matches your main template — Article, Product, Recipe, Event.</li>
+<li>Validate the rendered output on one URL of each template before rolling out.</li>
+<li>Roll out, then watch the enhancement reports for a few weeks and fix what is flagged.</li>
+<li>Only then consider the optional extras.</li>
+</ol>
+<p>Most sites get the entire available benefit from steps one to three. The long tail of exotic types is where a lot of effort goes and very little comes back.</p>
+<a class="cta" href="https://andrewhangyal.gumroad.com/l/pumpr?utm_source=hub&amp;utm_medium=guide&amp;utm_campaign=how-to-implement-schema-markup" rel="noopener">
+  <strong>Or review the whole site&#x27;s markup in one pass</strong>
+  <span>The Forge SEO Skill Stack includes a schema review that walks every template, reports which types are present, which are malformed and which contradict the visible page — the third being the one a validator will not tell you about.</span>
+  <span class="price">$39 &middot; instant download &rarr;</span>
+</a>
+<h2>Common questions</h2>
+<dl class="faq">
+  <dt>What is schema markup?</dt>
+  <dd>A block of structured data, written in the shared schema.org vocabulary, that states explicitly what a page contains — that this is a product, this is its price, this is its availability — instead of leaving a search engine to infer it from the text. It is normally added as JSON-LD in a script tag.</dd>
+  <dt>Does schema markup improve rankings?</dt>
+  <dd>It is not a ranking factor in the way a link or the content itself is. What it does is make a page eligible for richer result formats, and those formats can change how many people click a result that was already ranking. Engines describe eligibility, never entitlement, and frequently show a plain result anyway.</dd>
+  <dt>Should I use JSON-LD or microdata?</dt>
+  <dd>JSON-LD in nearly all cases. It lives in one script block rather than being threaded through your HTML attributes, so a layout change cannot break the data, and it is the format the major engines document first. Microdata mainly persists in older templates.</dd>
+  <dt>Where does schema markup go on a page?</dt>
+  <dd>Inside a script tag of type application/ld+json. It is valid anywhere in the document, and the head is the easier convention to audit because there is one place to look. One block per page covering that page's entities is cleaner than several scattered ones.</dd>
+  <dt>What are the most useful types of schema markup?</dt>
+  <dd>For most sites: Organization or Person and WebSite site-wide, BreadcrumbList on hierarchical templates, and then the single content type that matches the page — Article, Product with Offer, Recipe, Event or LocalBusiness. The remaining hundreds of types rarely repay the effort.</dd>
+  <dt>Why is my valid schema markup being ignored?</dt>
+  <dd>The most common reason is a mismatch between the markup and what a visitor actually sees — FAQ markup on a page with no visible questions, ratings that are not displayed, or a marked-up price that differs from the rendered one. A validator only checks syntax and required properties, so it cannot detect any of these.</dd>
+</dl>
+<nav class="related" aria-label="Related free guides">
+<h2>Related free guides</h2>
+<ul><li><a href="/guides/claude-code-seo-audit/">Run an SEO audit with Claude Code</a></li><li><a href="/guides/claude-code-for-marketing/">Claude Code for marketing</a></li><li><a href="/guides/how-to-write-a-claude-code-skill/">Write a Claude Code skill</a></li></ul>
+</nav>
+<div class="disc"><strong>Independent guide. Not affiliated with or endorsed by Google, Microsoft, or Schema.org.</strong> Search engines change which structured-data types they support and how they display them without notice, and markup has never guaranteed any particular result — treat everything here as a starting point and confirm against current official documentation before relying on it.</div>
+</main>
+<footer>
+<p><a href="https://tools.aingyal.com/">&larr; All AI tools &amp; guides</a></p>
+<p>We also run <a href="https://forge-node.tail2b516d.ts.net/">16 small developer tools</a> &mdash; JWT decoder, regex tester, cron parser, QR and screenshot generators &mdash; free to use in the browser, with no signup and no email capture.</p>
+<p>Written after a perfectly valid FAQPage block on a page with no visible questions on it.</p>
+</footer>
+</body>
+</html>
